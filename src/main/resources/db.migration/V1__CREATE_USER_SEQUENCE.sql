@@ -1,0 +1,1 @@
+CREATE SEQUENCE user_sequence START 1 INCREMENT 1;
