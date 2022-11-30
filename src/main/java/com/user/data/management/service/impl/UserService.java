@@ -118,11 +118,16 @@ public class UserService implements IUser {
 
     @Override
     public void deleteUserById(Long id) {
+        var findUser = userRepository.findById(id).orElseThrow(() -> new NotFoundException("The user was not found!"));
+        userRepository.deleteById(id);
+        log.info("Delete user by ID " + id);
 
+        notificationContext.sendMessage(MessageTopic.USER_DELETE_EVENT, id, MessageTopic.USER_DELETE_EVENT.name());
     }
 
     @Override
     public UserDto updateUserById(Long id) {
+
         return null;
     }
 

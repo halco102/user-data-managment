@@ -12,7 +12,7 @@ public abstract class AbstractSendNotification<T> implements INotification<T>{
     private final KafkaSender<T> kafkaSender;
 
     @Override
-    public void sendNotification(String topic, T object) {
+    public final void sendNotification(String topic, T object) {
         if (object == null) {
             log.error("T is null");
             throw new NullPointerException("T is null");

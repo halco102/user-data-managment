@@ -1,16 +1,14 @@
 package com.user.data.management.event.notification;
 
-import message.PostedBy;
 import com.user.data.management.event.service.AbstractSendNotification;
 import com.user.data.management.event.service.KafkaSender;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserUpdateNotification extends AbstractSendNotification<PostedBy> {
+public class DeleteUserNotification extends AbstractSendNotification<Long> {
 
-    public UserUpdateNotification(KafkaSender<PostedBy> kafkaSender) {
+    public DeleteUserNotification(KafkaSender<Long> kafkaSender) {
         super(kafkaSender);
     }
-
 
 }
