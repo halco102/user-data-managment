@@ -1,6 +1,7 @@
 package com.user.data.management.event.service;
 
 import com.user.data.management.event.constants.MessageTopic;
+import com.user.data.management.event.notification.DeleteUserNotification;
 import com.user.data.management.event.notification.UserUpdateNotification;
 import com.user.data.management.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,8 @@ public class NotificationContext {
 
             if (notification instanceof UserUpdateNotification)
                 context.put(MessageTopic.USER_UPDATE_EVENT, notification);
+            else if (notification instanceof DeleteUserNotification)
+                context.put(MessageTopic.USER_DELETE_EVENT, notification);
             else
                 throw new NotFoundException("Context was not found");
 
