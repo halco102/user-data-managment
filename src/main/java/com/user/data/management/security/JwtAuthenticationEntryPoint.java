@@ -1,3 +1,4 @@
+/*
 package com.user.data.management.security;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,3 +25,4 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
     }
 }
+*/

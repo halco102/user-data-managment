@@ -1,3 +1,4 @@
+/*
 package com.user.data.management.security;
 
 import lombok.extern.slf4j.Slf4j;
@@ -103,3 +104,4 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             "/webjars/springfox-swagger-ui/favicon-16x16.png"));
 
 }
+*/
