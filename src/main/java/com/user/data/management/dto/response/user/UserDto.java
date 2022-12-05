@@ -1,19 +1,16 @@
-package com.user.data.management.dto.request;
+package com.user.data.management.dto.response.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EditUserRequest {
+public class UserDto {
 
-    @NotNull
     private Long id;
 
     private String username;
@@ -21,5 +18,7 @@ public class EditUserRequest {
     private String email;
 
     private String imageUrl;
+
+    private LocalDate createdAt;
 
 }

@@ -47,9 +47,6 @@ public class User {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate createdAt;
 
-    @Column(name = "roles")
-    private UserRole userRole;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_follow", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "follow_id"))
     @ToString.Exclude
@@ -61,6 +58,9 @@ public class User {
     @ToString.Exclude
     private Set<User> following = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User(String username, String password, String email) {
         this.username = username;

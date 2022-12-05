@@ -1,10 +1,10 @@
 package com.user.data.management.controller;
 
-import com.user.data.management.dto.request.EditUserRequest;
-import com.user.data.management.dto.request.UserLoginRequest;
-import com.user.data.management.dto.request.UserSignupRequest;
-import com.user.data.management.service.IUser;
-import com.user.data.management.service.IUserSecurity;
+import com.user.data.management.dto.request.user.EditUserRequest;
+import com.user.data.management.dto.request.user.UserLoginRequest;
+import com.user.data.management.dto.request.user.UserSignupRequest;
+import com.user.data.management.service.user.IUser;
+import com.user.data.management.service.user.IUserSecurity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +21,8 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(@RequestBody UserSignupRequest request) {
-        return new ResponseEntity<>(iUser.createUser(request), HttpStatus.OK);
-    }
-
-    @GetMapping("/current")
-    public ResponseEntity<?> getCurrentlyLoggedUser() {
-        return new ResponseEntity<>(iUserSecurity.getCurrentlyLoggedUser(), HttpStatus.OK);
+        iUser.createUser(request);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/login")
@@ -54,5 +50,23 @@ public class UserController {
         iUser.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/security/find-by-username")
+    public ResponseEntity<?> findUserByUsername(@RequestParam String username) {
+        return new ResponseEntity<>(iUserSecurity.getUserByUsername(username), HttpStatus.OK);
+    }
+
+
+/*
+    @GetMapping("/current")
+    public ResponseEntity<?> getCurrentlyLoggedUser() {
+        return new ResponseEntity<>(iUserSecurity.getCurrentlyLoggedUser(), HttpStatus.OK);
+    }
+
+    @GetMapping("/jwt")
+    public ResponseEntity<?> getUserByJwt(@RequestParam String jwt) {
+        return new ResponseEntity<>(iUserSecurity.getUserByJwt(jwt), HttpStatus.OK);
+    }
+*/
 
 }
