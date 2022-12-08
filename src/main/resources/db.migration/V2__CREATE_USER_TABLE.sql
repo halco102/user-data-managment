@@ -1,4 +1,4 @@
-CREATE TABLE users(
+CREATE TABLE IF NOT EXISTS users(
 id int8 DEFAULT nextval('user_sequence') PRIMARY KEY ,
 username varchar(255) NOT NULL UNIQUE,
 password varchar(255) NOT NULL ,

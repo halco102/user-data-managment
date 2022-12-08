@@ -1,9 +1,10 @@
+/*
 package com.user.data.management.service;
 
-import com.user.data.management.dto.request.UserLoginRequest;
-import com.user.data.management.dto.request.UserSignupRequest;
-import com.user.data.management.dto.response.UserDto;
-import com.user.data.management.dto.response.UserLoginResponse;
+import com.user.data.management.dto.request.user.UserLoginRequest;
+import com.user.data.management.dto.request.user.UserSignupRequest;
+import com.user.data.management.dto.response.user.UserDto;
+import com.user.data.management.dto.response.user.UserLoginResponse;
 import com.user.data.management.exception.BadRequestException;
 import com.user.data.management.exception.DuplicateException;
 import com.user.data.management.exception.NotFoundException;
@@ -13,7 +14,7 @@ import com.user.data.management.model.User;
 import com.user.data.management.model.UserRole;
 import com.user.data.management.repository.UserRepository;
 import com.user.data.management.security.JwtTokenUtil;
-import com.user.data.management.service.impl.UserService;
+import com.user.data.management.service.user.impl.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -168,4 +169,4 @@ class UserServiceTest {
         Assertions.assertEquals(toTest.getEmail(), user.getEmail());
         Assertions.assertEquals(toTest.getImageUrl(), user.getImageUrl());
     }
-}
+}*/
