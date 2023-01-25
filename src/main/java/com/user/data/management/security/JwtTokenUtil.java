@@ -1,4 +1,3 @@
-/*
 package com.user.data.management.security;
 
 import io.jsonwebtoken.*;
@@ -7,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,28 +24,6 @@ public class JwtTokenUtil implements Serializable {
 
     @Value("${jwt-secret-key}")
     private String secret;
-
-    private Claims customClaims(CustomUserDetailsImp imp) {
-        Claims claims = new DefaultClaims();
-        Map<String, String> map = new HashMap<>();
-
-        map.put("username", imp.getUsername());
-        map.put("email", imp.getEmail());
-        map.put("imageUrl", imp.getImageUrl());
-        map.put("roles", imp.getAuthorities().toString());
-        claims.putAll(map);
-        claims.setSubject(String.valueOf(imp.getId()));
-        return claims;
-    }
-    public String generateJwtToken(Authentication authentication) {
-        CustomUserDetailsImp customUserDetailsImp = (CustomUserDetailsImp) authentication.getPrincipal();
-        return Jwts.builder()
-                .setClaims(customClaims(customUserDetailsImp))
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-                .signWith(SignatureAlgorithm.HS256, secret)
-                .compact();
-    }
 
     public String getUsernameByJwt(String token) {
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
@@ -70,5 +49,12 @@ public class JwtTokenUtil implements Serializable {
         return false;
     }
 
+    public static String parseJwt(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
+        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+            return headerAuth.substring(7, headerAuth.length());
+        }
+        return null;
+    }
+
 }
-*/

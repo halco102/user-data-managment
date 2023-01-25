@@ -47,13 +47,13 @@ public class User {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate createdAt;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_follow", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "follow_id"))
     @ToString.Exclude
     private Set<User> followers = new HashSet<>();
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_follow", joinColumns = @JoinColumn(name = "follow_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
     @ToString.Exclude
     private Set<User> following = new HashSet<>();

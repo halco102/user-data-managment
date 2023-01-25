@@ -19,6 +19,7 @@ public class UserController {
 
     private final IUserSecurity iUserSecurity;
 
+
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(@RequestBody UserSignupRequest request) {
         iUser.createUser(request);
@@ -56,17 +57,5 @@ public class UserController {
         return new ResponseEntity<>(iUserSecurity.getUserByUsername(username), HttpStatus.OK);
     }
 
-
-/*
-    @GetMapping("/current")
-    public ResponseEntity<?> getCurrentlyLoggedUser() {
-        return new ResponseEntity<>(iUserSecurity.getCurrentlyLoggedUser(), HttpStatus.OK);
-    }
-
-    @GetMapping("/jwt")
-    public ResponseEntity<?> getUserByJwt(@RequestParam String jwt) {
-        return new ResponseEntity<>(iUserSecurity.getUserByJwt(jwt), HttpStatus.OK);
-    }
-*/
 
 }

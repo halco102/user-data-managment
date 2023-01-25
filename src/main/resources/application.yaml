@@ -35,7 +35,7 @@ spring:
 
     locations: classpath:db/migration
     check-location: true
-    baseline-on-migrate: false
+    baseline-on-migrate: true
     driverClassName: org.postgresql.Driver
 
   mvc:
@@ -55,3 +55,5 @@ spring:
           starttls:
             enable: true
     protocol: smtp
+
+jwt-secret-key: ${JWT_SECRET_KEY}
