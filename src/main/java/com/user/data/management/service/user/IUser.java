@@ -4,6 +4,7 @@ import com.user.data.management.dto.request.user.EditUserRequest;
 import com.user.data.management.dto.request.user.UserLoginRequest;
 import com.user.data.management.dto.request.user.UserSignupRequest;
 import com.user.data.management.dto.response.user.UserDto;
+import com.user.data.management.dto.response.user.UserProfile;
 import com.user.data.management.dto.response.user.UserSecurityDto;
 import message.PostedBy;
 
@@ -24,4 +25,6 @@ public interface IUser {
     PostedBy editUser(EditUserRequest request);
 
     void addRoleToUser(String roleName, Long userId);
+
+    UserProfile getUserProfileById(Long id);
 }

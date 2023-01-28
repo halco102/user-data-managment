@@ -58,4 +58,8 @@ public class UserController {
     }
 
 
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<?> getUserProfileById(@PathVariable Long id) {
+        return new ResponseEntity<>(iUser.getUserProfileById(id), HttpStatus.OK);
+    }
 }

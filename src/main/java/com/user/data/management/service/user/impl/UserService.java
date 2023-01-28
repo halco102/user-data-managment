@@ -4,6 +4,7 @@ import com.user.data.management.dto.request.user.EditUserRequest;
 import com.user.data.management.dto.request.user.UserLoginRequest;
 import com.user.data.management.dto.request.user.UserSignupRequest;
 import com.user.data.management.dto.response.user.UserDto;
+import com.user.data.management.dto.response.user.UserProfile;
 import com.user.data.management.dto.response.user.UserSecurityDto;
 import com.user.data.management.event.constants.MessageTopic;
 import com.user.data.management.event.service.NotificationContext;
@@ -191,4 +192,13 @@ public class UserService implements IUser {
         log.info("Added new role to user");
     }
 
+    private User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("The user does not exist"));
+    }
+
+    @Override
+    public UserProfile getUserProfileById(Long id) {
+        var fetchUser = getUserById(id);
+        return userMapper.fromEntityToUserProfile(fetchUser);
+    }
 }
